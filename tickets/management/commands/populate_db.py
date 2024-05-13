@@ -36,37 +36,45 @@ class Command(BaseCommand):
             ConcertCategory.objects.get_or_create(name=category)
 
         # populate the database with concerts
-        concert_prefix = ["Underground", "Midnight", "Late Night", "Secret", "" * 10]
-        concert_suffix = ["Party", "Rave", "Concert", "Gig", "Revolution", "Jam", "Tour"]
+        concert_prefix = ["Underground", "Midnight",
+                          "Late Night", "Secret", "" * 10]
+        concert_suffix = ["Party", "Rave", "Concert",
+                          "Gig", "Revolution", "Jam", "Tour"]
         for i in range(10):
             venue = random.choice(venues)[0]
             category = ConcertCategory.objects.order_by("?").first()
             concert = Concert.objects.create(
-                name=f"{random.choice(concert_prefix)} {category.name} {random.choice(concert_suffix)}",
+                name=f"{random.choice(concert_prefix)} {category.name} {
+                    random.choice(concert_suffix)}",
                 description="",
                 venue=venue,
                 starts_at=datetime.now(pytz.utc)
-                          + timedelta(days=random.randint(1, 365)),
+                + timedelta(days=random.randint(1, 365)),
                 price=random.randint(10, 100),
             )
             concert.categories.add(category)
             concert.save()
 
         # populate the database with ticket purchases
-        names = ["James", "John", "Robert", "Michael", "William", "David", "Richard", "Joseph", "Thomas", "Charles"]
-        surname = ["Smith", "Jones", "Taylor", "Brown", "Williams", "Wilson", "Johnson", "Davies", "Patel", "Wright"]
+        names = ["James", "John", "Robert", "Michael", "William",
+                 "David", "Richard", "Joseph", "Thomas", "Charles"]
+        surname = ["Smith", "Jones", "Taylor", "Brown", "Williams",
+                   "Wilson", "Johnson", "Davies", "Patel", "Wright"]
         for i in range(500):
             concert = Concert.objects.order_by("?").first()
             Ticket.objects.create(
                 concert=concert,
-                customer_full_name=f"{random.choice(names)} {random.choice(surname)}",
+                customer_full_name=f"{random.choice(names)} {
+                    random.choice(surname)}",
                 payment_method=random.choice(
                     ["CC", "CC", "CC", "CC", "DC", "DC", "ET", "BC"]
                 ),
-                paid_at=datetime.now(pytz.utc) - timedelta(days=random.randint(1, 365)),
+                paid_at=datetime.now(pytz.utc) -
+                timedelta(days=random.randint(1, 365)),
                 is_active=random.choice([True, False]),
             )
             concert.tickets_left -= 1
             concert.save()
 
-        self.stdout.write(self.style.SUCCESS("Successfully populated the database."))
+        self.stdout.write(self.style.SUCCESS(
+            "Successfully populated the database."))
