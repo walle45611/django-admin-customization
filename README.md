@@ -39,4 +39,4 @@ Check out the [post](#).
     (venv)$ python manage.py runserver
     ```
     
-1. Your Django admin site should be accessible at [http://localhost:8000/secretadmin/](http://localhost:8000/secretadmin/).
+1. Your Django admin site should be accessible at [http://localhost:8000/secretadmin/](http://localhost:8000/secretadmin/).# django-admin-customization
