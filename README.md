@@ -1,2 +1,4 @@
 ## 說明文件
-1. 因為我只有做登記畫面，所以首頁會沒有東西，請跳到 tickets 頁面。
+1. admin site
+2. home page
+3. book ticket
