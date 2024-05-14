@@ -14,11 +14,6 @@ def concert_list(request):
 
 def concert_detail(request, concert_id):
     concert = get_object_or_404(Concert, id=concert_id)
-    return render(request, 'tickets/concert_detail.html', {'concert': concert})
-
-
-def concert_detail(request, concert_id):
-    concert = get_object_or_404(Concert, id=concert_id)
     if request.method == 'POST':
         form = BookingForm(request.POST)
         if form.is_valid():
