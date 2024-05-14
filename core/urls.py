@@ -24,4 +24,5 @@ admin.site.index_title = "Site administration"
 urlpatterns = [
     path("secretadmin/", admin.site.urls),
     path("tickets/", include('tickets.urls')),
+    path("", include('home.urls')),
 ]
